@@ -1,0 +1,259 @@
+﻿@model BookManageProject.Models.BookData
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content {
+            display: flex;
+        }
+
+        .product-section {
+            flex: 2;
+            margin-right: 20px;
+        }
+
+        .product-summary {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .product-image img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .product-details {
+            margin-left: 20px;
+        }
+
+            .product-details h3 {
+                margin: 0 0 10px;
+            }
+
+            .product-details .delivery {
+                color: green;
+                margin: 10px 0;
+            }
+
+        .price {
+            font-size: 1.2em;
+            color: #e53935;
+            margin: 10px 0;
+        }
+
+            .price .original-price {
+                text-decoration: line-through;
+                color: #999;
+                margin-left: 10px;
+            }
+
+            .price .discount {
+                color: #4caf50;
+                margin-left: 10px;
+            }
+
+        .insurance {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+            .insurance h4 {
+                margin: 0 0 10px;
+            }
+
+        .insurance-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .insurance-info {
+            flex: 1;
+        }
+
+            .insurance-info .original-insurance-price {
+                text-decoration: line-through;
+                color: #999;
+                margin-left: 5px;
+            }
+
+            .insurance-info .discount {
+                color: #4caf50;
+                margin-left: 5px;
+            }
+
+        .cart-controls {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .cart-controls button {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 5px 5px;
+                border-radius: 4px;
+                justify-content: space-around;
+                cursor: pointer;
+            }
+
+            .cart-controls span {
+                margin: 0 10px;
+            }
+
+        .price-details {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+            .price-details h3 {
+                margin-top: 0;
+            }
+
+            .price-details p {
+                margin: 10px 0;
+            }
+
+            .price-details .discount {
+                color: #e53935;
+            }
+
+            .price-details hr {
+                margin: 20px 0;
+                border: none;
+                border-top: 1px solid #ddd;
+            }
+
+            .price-details .total {
+                font-size: 1.5em;
+                color: #e53935;
+            }
+
+            .price-details .savings {
+                color: green;
+            }
+
+            .price-details .place-order {
+                display: block;
+                width: 100%;
+                background-color: #ff5722;
+                color: #fff;
+                border: none;
+                padding: 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                text-align: center;
+                margin-top: 20px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="product-section">
+                <div class="product-summary">
+                    <div class="product-image">
+                        <img src="~/BooksPic.jpeg" alt="Product Image">
+                    </div>
+                    <div class="product-details">
+                        <h3>Bharat Lifestyle Hezalnut Engineered Wood Open Book Shelf</h3>
+                        <p>Finish Color - Wenge, DIY(Do-It-Yourself)</p>
+                        <p>Seller: BharatLifestyle</p>
+                        <p class="delivery">Delivery by Thu May 30 | Free</p>
+                        <div class="price">
+                            <span class="current-price">₹1,804</span> <span class="original-price">₹9,999</span> <span class="discount">81% Off</span>
+                        </div>
+                        <p>1 coupon & 1 offer applied</p>
+                        <button><a asp-action="Index">Addd Item</a>
+                            </button>
+                        <div class="cart-controls">
+                            <button id="decrease">-</button>
+                            <span id="quantity">1</span>
+                            <button id="increase">+</button>
+
+                            <button>Save for Later</button>
+
+                            <button>Remove</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="price-details">
+                <h3>Price Details</h3>
+                <p>Price (1 item): ₹9,999</p>
+                <p>Discount: <span class="discount">-₹8,100</span></p>
+                <p>Coupons for you: <span class="discount">-₹95</span></p>
+                <p>Delivery Charges: Free</p>
+                <hr>
+                <p class="total">Total Amount: <span id="total-amount">₹1,804</span></p>
+                <p class="savings">You will save ₹8,195 on this order</p>
+                <button class="place-order">Place Order</button>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const increaseButton = document.getElementById('increase');
+            const decreaseButton = document.getElementById('decrease');
+            const quantityElement = document.getElementById('quantity');
+            const totalAmountElement = document.getElementById('total-amount');
+
+            let quantity = 1;
+            const basePrice = 1804;
+
+            const updateTotalAmount = () => {
+                const totalAmount = basePrice * quantity;
+                totalAmountElement.textContent = `₹${totalAmount.toLocaleString()}`;
+            };
+
+            increaseButton.addEventListener('click', () => {
+                quantity++;
+                quantityElement.textContent = quantity;
+                updateTotalAmount();
+            });
+
+            decreaseButton.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity--;
+                    quantityElement.textContent = quantity;
+                    updateTotalAmount();
+                }
+            });
+
+            updateTotalAmount();
+        });
+    </script>
+</body>
+</html>

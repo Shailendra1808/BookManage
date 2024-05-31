@@ -1,0 +1,172 @@
+﻿@model IEnumerable<BookManageProject.Models.BookData>
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .card1 .card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .card1 .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+</style>
+
+
+<div class="container-fluid bg-light py-3">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-2 text-center">
+                <img src="~/BookImage.png" alt="Logo" class="img-fluid" style="max-height: 50px;">
+                <h3 class="d-inline-block ml-2">Our Store</h3>
+            </div>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" placeholder="Search Products...." />
+            </div>
+            <div class="col-sm-3 text-right">
+                <a asp-action="Login" class="btn btn-outline-primary mr-2">Login</a>
+                <a asp-action="Cart" class="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+        <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-2 mt-2 card1 rounded rounded-0">
+                <div class="card">
+                    <img src="~/images/@Html.DisplayFor(modelItem => item.BookImage)" class="card-img-top" alt="Book Image" height="100"width="100">
+                    <div class="card-body">
+                        <p class="card-title">
+                            @Html.DisplayFor(modelItem => item.BookName)
+                        </p>
+                        <p class="card-text">
+                            @Html.DisplayNameFor(modelItem => item.BookDescription)
+                            .
+                        </p>
+                        <p class="card-text fw-bold">
+                            <strong>
+                                ₹@Html.DisplayFor(modelItem => item.BookPrice)
+                            </strong>
+                        </p>
+                        <div class="row"><a href="#" class="btn btn-outline-primary">Add to Cart</a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+    </div>  
+
+<footer class="bg-info text-light container-fluid mt-3 py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 mt-4 text-center">
+                <img src="~/BookImage.png" alt="Book Store Logo" class="img-fluid" style="height: 100px; width: 100px;" />
+            </div>
+
+            <div class="col-sm-3 mt-4">
+                <h3>Our Services</h3>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light text-decoration-none">New Arrivals</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Best Sellers</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Special Offers</a></li>
+                </ul>
+            </div>
+
+            <div class="col-sm-3 mt-4">
+                <h3>Support</h3>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
+                </ul>
+                <p>
+                    <a href="tel:+917318400192" class="text-light text-decoration-none"><i class="fa-solid fa-phone"></i> +91 7318400192</a>
+                    <br><br>
+                    <a href="mailto:shailendratiwari1808@gmail.com" class="text-light text-decoration-none">
+                        <i class="fa-regular fa-envelope"></i> shailendratiwari1808@gmail.com
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-sm-3 mt-4">
+                <h3>Connect with Us</h3>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#" class="text-light text-decoration-none"><i class="fa-brands fa-facebook fa-2x"></i></a></li>
+                    <li class="list-inline-item"><a href="#" class="text-light text-decoration-none"><i class="fa-brands fa-twitter fa-2x"></i></a></li>
+                    <li class="list-inline-item"><a href="#" class="text-light text-decoration-none"><i class="fa-brands fa-instagram fa-2x"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <h4 class="mb-0">Thank you for choosing [Our Book Store]. We ensure seamless book experiences from luxurious accommodations to off-the-beaten-path discoveries.</h4>
+                <p class="mt-2">&copy; 2024 All Rights Reserved | Shailu Store</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+@* @model IEnumerable<BookManageProject.Models.BookData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookDescription)
+            </td>
+            <td>
+                    <img src="~/images/@Html.DisplayFor(modelItem => item.BookImage)" alt="Alternate Text" />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@

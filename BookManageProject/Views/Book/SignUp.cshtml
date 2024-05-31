@@ -1,0 +1,111 @@
+﻿@model BookManageProject.Models.Book
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+    </style>
+</head>
+<body class="bg-primary">
+    <div class="form-container container-fluid w-50">
+        <h2>Signup Form</h2>
+        <p>@TempData["Error"]</p>
+        <form asp-action="SignUp" method="post" enctype="multipart/form-data">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control" required>
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+            <label asp-for="Gender">Gender</label>
+            <select asp-for="Gender" class="form-control">
+                <option value="">SelectGender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+
+
+            <label asp-for="Address">Address</label>
+            <input asp-for="Address" class="form-control" >
+            <span asp-validation-for="Address" class="text-danger"></span>
+
+
+            <label asp-for="EmailAddress">EmailAddress</label>
+            <input asp-for="EmailAddress"   type="email" class="form-control" >
+            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+
+
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" >
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+
+            <label asp-for="ContactNumber">Contact Number</label>
+            <input asp-for= "ContactNumber" type="tel">
+            <span asp-validation-for="ContactNumber"  class="text-danger"></span>
+
+
+            <button type="submit">Sign Up</button>
+            <button class="btn  btn-warning"><a asp-action="Login">Back To Login</a></button>
+
+        </form>
+    </div>
+</body>
+</html>
+
